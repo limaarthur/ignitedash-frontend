@@ -1,0 +1,40 @@
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContent {
+  font-size: 1.4rem;
+  color: var(--white);
+
+  height: 4.3rem;
+  width: 24rem;
+
+  background: var(--gray-400);
+
+  border-radius: 0.6rem 0 0 0.6rem;
+
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonIcon {
+  font-size: 1.6rem;
+  color: var(--white);
+
+  background: var(--blue-400);
+
+  width: 4.3rem;
+  height: 4.3rem;
+
+  border-radius: 0 0.6rem 0.6rem 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  cursor: pointer;
+}

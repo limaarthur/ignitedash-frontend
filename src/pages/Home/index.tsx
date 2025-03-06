@@ -1,4 +1,5 @@
 import { Header } from "../../components/Header";
+import { ButtonLogin } from "../../components/ButtonLogin";
 
 import styles from "./Home.module.css";
 
@@ -17,7 +18,7 @@ export function Home() {
               Ajudaremos você a encontrar os melhores produtos <br />
               disponíveis no mercado
             </p>
-            <button>COMPONENTELOGINBTN</button>
+            <ButtonLogin />
           </div>
           <img className={styles.mainImage} src="/images/main.svg" alt="Girl coding" />
         </div>
