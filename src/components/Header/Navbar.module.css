@@ -51,8 +51,8 @@
     color: var(--gray-200);
   }
 
-  &.active {
+  /*&.isActive {
   color: var(--white);
   font-weight: bold;
-  }
+  }*/
 }

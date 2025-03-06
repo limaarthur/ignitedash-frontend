@@ -1,20 +1,21 @@
+import { Link } from "react-router";
 import styles from "./Navbar.module.css";
 
 export function Header() {
   return (
     <header className={styles.headerContainer}>
       <nav className={styles.mainNav}>
-        <a className={styles.navLogoLink} href="#">IGNITEDASH.</a>
+        <Link className={styles.navLogoLink} to="/">IGNITEDASH.</Link>
         <div className={styles.menuContainer}>
           <ul className={styles.mainMenu}>
             <li>
-              <a href="#">HOME</a>
+              <Link to="/" className={styles.isActive}>HOME</Link>
             </li>
             <li>
-              <a href="#">CATÁLOGO</a>
+              <Link to="/catalog" className={styles.isActive}>CATÁLOGO</Link>
             </li>
             <li>
-              <a href="#">ADMIN</a>
+              <Link to="/admin" className={styles.isActive}>ADMIN</Link>
             </li>
           </ul>
         </div>
