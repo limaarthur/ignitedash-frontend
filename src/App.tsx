@@ -1,10 +1,10 @@
-import { Home } from './pages/Home';
+import { AppRoutes } from './routes';
 
 import './global.css';
 
 export function App() {
   return (
-    <Home />
+    <AppRoutes />
   )
 }
 
