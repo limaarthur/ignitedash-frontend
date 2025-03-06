@@ -1,5 +1,6 @@
 import { Header } from "../../components/Header";
 import { ButtonLogin } from "../../components/ButtonLogin";
+import { Footer } from "../../components/Footer";
 
 import styles from "./Home.module.css";
 
@@ -23,6 +24,7 @@ export function Home() {
           <img className={styles.mainImage} src="/images/main.svg" alt="Girl coding" />
         </div>
       </div>
+      <Footer />
     </>
   );
 }
