@@ -1,10 +1,18 @@
-import { Header } from "../../components/Header";
+import { Header } from '../../components/Header'
+
+import styles from './Catalog.module.css';
 
 export function Catalog() {
   return (
     <>
       <Header />
-      <h1>PRODUCTS</h1>
+      <div className={styles.catalogContainer}>
+        <div className={styles.filtersContainer}>
+          <h1 className={styles.catalogTitle}>
+            Catálogo de produtos
+          </h1>
+        </div>
+      </div>
     </>
-  );
+  )
 }

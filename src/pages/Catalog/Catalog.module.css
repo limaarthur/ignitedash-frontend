@@ -1,0 +1,12 @@
+.catalogContainer {
+  margin-top: 1.5rem;
+  padding: 0 2.5rem 3rem 2.5rem;
+}
+
+.catalogTitle {
+  color: var(--gray-500);
+  font-size: 1.5rem;
+  line-height: 100%;
+  letter-spacing: -0.015em;
+}
+
