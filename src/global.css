@@ -1,9 +1,11 @@
 :root {
   --white: #FFFFFF;
   --white-400: #F3F2F2;
+  --white-300: #E1E1E1;
   --white-500: #E5E5E5;
   
   --gray-200: #D3D3D3;
+  --gray-300: #9e9e9e;
   --gray-400: #A9A9A9;
   --gray-500: #263238;
   --gray-600: #333333;

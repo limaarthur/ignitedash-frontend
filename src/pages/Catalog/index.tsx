@@ -1,3 +1,4 @@
+import { ProductFilters } from '../../components/core/ProductFilters';
 import { Header } from '../../components/Header'
 
 import styles from './Catalog.module.css';
@@ -11,6 +12,7 @@ export function Catalog() {
           <h1 className={styles.catalogTitle}>
             Catálogo de produtos
           </h1>
+          <ProductFilters />
         </div>
       </div>
     </>

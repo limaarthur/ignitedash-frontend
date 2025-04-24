@@ -10,3 +10,10 @@
   letter-spacing: -0.015em;
 }
 
+.filtersContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
