@@ -1,0 +1,27 @@
+.prodctCardContainer {
+  padding: 1.2rem 1.2rem 1.8rem 1.2rem;
+  text-align: center;
+
+  border-radius: 10px;
+
+  background: var(--white);
+}
+
+.productImage {
+  width: 10rem;
+  height: 10rem;
+}
+
+.productInfo {
+  border-top: 1px solid var(--white-300);
+  text-align: left;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.productName {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-500);
+}

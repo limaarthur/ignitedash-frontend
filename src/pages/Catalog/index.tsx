@@ -1,4 +1,5 @@
 import { ProductFilters } from '../../components/core/ProductFilters';
+import { ProductCard } from './components/ProductCard';
 import { Header } from '../../components/Header'
 
 import styles from './Catalog.module.css';
@@ -13,6 +14,17 @@ export function Catalog() {
             Catálogo de produtos
           </h1>
           <ProductFilters />
+        </div>
+        <div className={styles.catalogProducts}>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </div>
     </>

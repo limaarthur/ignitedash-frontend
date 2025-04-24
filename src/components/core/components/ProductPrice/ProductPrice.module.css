@@ -1,0 +1,19 @@
+.productPriceContaier {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.productCurrency {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-300)
+}
+
+.productPrice {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.015em;
+  color: var(--blue-300);
+  margin-left: 0.4rem;
+}

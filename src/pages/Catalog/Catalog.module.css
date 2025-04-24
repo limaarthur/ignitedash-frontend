@@ -17,3 +17,11 @@
   justify-content: space-between;
 }
 
+.catalogProducts {
+  margin-top: 2.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 15rem);
+  grid-gap: 1.2rem 1rem;
+  justify-content: space-between;
+}
+
