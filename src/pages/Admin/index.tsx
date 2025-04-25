@@ -1,4 +1,4 @@
-import { Header } from "../../components/Header";
+import { Header } from "../../core/components/Header";
 
 export function Admin() {
   return (

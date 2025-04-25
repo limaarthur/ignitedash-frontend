@@ -1,6 +1,9 @@
-import { Header } from "../../components/Header";
-import { ButtonLogin } from "../../components/ButtonLogin";
-import { Footer } from "../../components/Footer";
+import { Header } from "../../core/components/Header";
+import { ButtonLogin } from "../../core/components/ButtonLogin";
+
+import MainImage from '../../core/assets/images/main.svg';
+
+import { Footer } from "../../core/components/Footer";
 
 import styles from "./Home.module.css";
 
@@ -21,7 +24,7 @@ export function Home() {
             </p>
             <ButtonLogin />
           </div>
-          <img className={styles.mainImage} src="/images/main.svg" alt="Girl coding" />
+          <img className={styles.mainImage} src={MainImage} alt="Girl coding" />
         </div>
       </div>
       <Footer />

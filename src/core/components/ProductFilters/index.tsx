@@ -1,4 +1,4 @@
-import SearchIcon from '../../core/assets/images/search-icon.svg';
+import SearchIcon from '../../assets/images/search-icon.svg';
 
 import styles from './ProductFilters.module.css';
 

@@ -1,5 +1,5 @@
-import ProductImage from '../../../../components/core/assets/images/product.svg';
-import { ProductPrice } from '../../../../components/core/components/ProductPrice';
+import ProductImage from '../../../../core/assets/images/product.svg';
+import { ProductPrice } from '../../../../core/components/ProductPrice';
 
 import styles from "./ProductCard.module.css";
 

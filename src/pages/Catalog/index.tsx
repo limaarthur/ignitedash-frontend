@@ -1,6 +1,6 @@
-import { ProductFilters } from '../../components/core/ProductFilters';
+import { ProductFilters } from '../../core/components/ProductFilters';
 import { ProductCard } from './components/ProductCard';
-import { Header } from '../../components/Header'
+import { Header } from '../../core/components/Header'
 
 import styles from './Catalog.module.css';
 
