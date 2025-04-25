@@ -1,6 +1,7 @@
 import { ProductFilters } from '../../core/components/ProductFilters';
 import { ProductCard } from './components/ProductCard';
 import { Header } from '../../core/components/Header'
+import { Pagination } from '../../core/components/Pagination';
 
 import styles from './Catalog.module.css';
 
@@ -26,6 +27,7 @@ export function Catalog() {
           <ProductCard />
           <ProductCard />
         </div>
+        <Pagination />
       </div>
     </>
   )

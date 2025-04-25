@@ -1,0 +1,39 @@
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.paginationItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+
+  background: var(--gray-400);
+  color: var(--white);
+
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  letter-spacing: -0.015em;
+
+  margin-right: 0.6rem;
+}
+
+.paginationPrevious {
+  transform: rotate(-180deg);
+  margin-right: 2rem;
+  
+  fill: var(--gray-400);
+}
+
+.paginationNext {
+  margin-left: 1.5rem;
+  fill: var(--blue-300);
+}
