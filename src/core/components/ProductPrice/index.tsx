@@ -1,10 +1,14 @@
 import styles from './ProductPrice.module.css';
 
-export function ProductPrice() {
+type ProductPriceProps = {
+  price: number;
+}
+
+export function ProductPrice({ price } : ProductPriceProps) {
   return (
     <div className={styles.productPriceContaier}>
       <span className={styles.productCurrency}>R$</span>
-      <h3 className={styles.productPrice}>2.779,00</h3>
+      <h3 className={styles.productPrice}>{price}</h3>
     </div>
   )
 }
