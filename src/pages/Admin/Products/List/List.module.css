@@ -1,0 +1,28 @@
+.productCrudContainer {
+  padding: 1.6rem;
+}
+
+.productCrudBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.buttonCrudAdd {
+  height: 3.7rem;
+  width: 10rem;
+  border-radius: 10px;
+
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  color: var(--white);
+
+  border: none;
+  background: var(--blue-400);
+
+  cursor: pointer;
+}
+
+
