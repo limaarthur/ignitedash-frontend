@@ -25,4 +25,8 @@
   cursor: pointer;
 }
 
+.productCrudCardContainerInList {
+  padding-top: 2rem;
+}
+
 
