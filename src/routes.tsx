@@ -11,7 +11,7 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
-        <Route path="/products" element={<ProductDetails />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../../core/utils/requests';
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import ArrowIcon from '../../../core/assets/images/arrow-icon.svg?react';
 import { Header } from '../../../core/components/Header';
 import { ProductPrice } from '../../../core/components/ProductPrice';
@@ -9,14 +9,16 @@ import type { Product } from '../../../core/types/products';
 import styles from './ProductDetails.module.css';
 
 export function ProductDetails() {
+  const { productId } = useParams();
   const [product, setProduct] = useState<Product>();
-
+  
   useEffect(() => {
-    axios.get(`${BASE_URL}/products/2`)
+    if (!productId) return;
+    axios.get(`${BASE_URL}/products/${productId}`)
     .then(response => {
       setProduct(response.data);
     });
-  }, []);
+  }, [productId]);
 
   return (
     <>
