@@ -10,6 +10,8 @@
 .producCardtImage {
   width: 10rem;
   height: 10rem;
+
+  object-fit: cover;
 }
 
 .productInfo {
@@ -24,4 +26,8 @@
   line-height: 1.5rem;
   letter-spacing: -0.015em;
   color: var(--gray-500);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
