@@ -10,9 +10,11 @@ import styles from './Catalog.module.css';
 import type { SpringPage } from '../../core/types/spring';
 import type { AxiosParams } from '../../core/types/vendor/axios';
 import { Link } from 'react-router';
+import { CardLoader } from './CardLoader';
 
 export function Catalog() {
   const [page, setPage] = useState<SpringPage<Product>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const params: AxiosParams = {
@@ -24,10 +26,13 @@ export function Catalog() {
       },
     };
 
+    setIsLoading(true);
     axios(params).then((response) => {
       setPage(response.data);
-      console.log(response.data)
     })
+    .finally(() => {
+      setIsLoading(false);
+    });
   }, []);
 
   return (
@@ -42,15 +47,16 @@ export function Catalog() {
         </div>
 
         <div className={styles.catalogProducts}>
-          {page?.content.map(product => {
-            return (
-              <div key={product.id}>
-                <Link to={'/products/1'}>
-                  <ProductCard product={product} />
-                </Link>
-              </div>
-            )
-          })}
+          {isLoading ? <CardLoader /> : (
+            page?.content.map(product => {
+              return (
+                <div key={product.id}>
+                  <Link to={'/products/1'}>
+                    <ProductCard product={product} />
+                  </Link>
+                </div>
+              )
+          }))}
         </div>
       
         <Pagination />

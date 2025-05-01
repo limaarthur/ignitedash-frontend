@@ -1,0 +1,6 @@
+.cardLoaderContainer {
+  border-radius: 20px;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.25);
+  background-color: var(--white);
+  padding: 1rem;
+}
