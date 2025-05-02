@@ -1,0 +1,27 @@
+.authContainer {
+  display: flex;
+  padding: 2.5rem 2.5rem 6.2rem 0;
+  justify-content: center;
+  background-image: url('../../../core/assets/images/backgroud-auth.svg');
+  background-size: 100%;
+
+  height: 100vh; 
+  overflow: hidden; 
+}
+
+.authBannerContainerTitle {
+  margin-top: 1.8rem;
+  font-size: 3.4rem;
+  line-height: 4.6rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-500);
+}
+
+.authBannerContainerSubTitle {
+  margin-top: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-300);
+}
