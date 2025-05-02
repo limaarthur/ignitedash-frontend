@@ -1,0 +1,19 @@
+.authCardContainer {
+  padding: 6rem 3rem 3rem 3rem;
+  border-radius: 1.2rem;
+  width: 34rem;
+}
+
+.authCardTitle {
+  font-size: 3rem;
+  font-weight: normal;
+  line-height: 4rem;
+  letter-spacing: -0.015em;
+
+  color: var(--gray-500);
+
+  text-align: center;
+
+  text-transform: uppercase;
+  
+}

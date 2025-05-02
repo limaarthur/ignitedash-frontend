@@ -16,6 +16,9 @@ export function Auth() {
         </p>
         <AuthImage />
       </div>
+      <div>
+        <Login />
+      </div>
       <div className={styles.authFormContainer}>
         <Routes>
           <Route path="/admin/auth/login" element={<Login />} />

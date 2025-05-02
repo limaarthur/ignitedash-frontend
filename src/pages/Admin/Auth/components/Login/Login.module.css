@@ -1,0 +1,83 @@
+.loginContainer {
+  margin-top: 2.6rem;
+  border-radius: 10px;
+
+  background: var(--white);
+
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.25);
+}
+
+.loginForm {
+  margin-top: 5.6rem;
+}
+
+.loginFormEmailContent {
+  margin-bottom: 1.8rem;
+}
+
+.loginFormEmailContent input {
+  width: 27.4rem;
+  height: 3rem;
+  padding: 1rem;
+  border-radius: 10px;
+
+  border: 1px solid var(--white-300);
+}
+
+.loginFormPasswordContent {
+  margin-bottom: 1.8rem;
+}
+
+.loginFormPasswordContent input {
+  width: 27.4rem;
+  height: 3rem;
+  padding: 1rem;
+  border-radius: 10px;
+
+  border: 1px solid var(--white-300);
+}
+
+.loginRecoverLink {
+  display: inline-block;
+
+  font-size: 1rem;
+  line-height: 1rem;
+  letter-spacing: -0.015em;
+  color: var(--blue-300);
+}
+
+.loginSubmit {
+  margin-top: 6.2rem;
+  margin-bottom: 2rem;
+}
+
+.userRgisteredContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notRegistered {
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-300);
+
+  text-align: center;
+
+}
+
+.loginLinkRegister {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  letter-spacing: -0.015em;
+  color: var(--blue-300);
+
+  text-align: center;
+
+  margin-left: 0.6rem;
+
+  text-decoration-line: underline;
+}
