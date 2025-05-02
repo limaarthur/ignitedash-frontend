@@ -22,7 +22,7 @@ export function Home() {
               Ajudaremos você a encontrar os melhores produtos <br />
               disponíveis no mercado
             </p>
-            <ButtonLogin />
+            <ButtonLogin text="INICIE AGORA A SUA BUSCA" />
           </div>
           <img className={styles.mainImage} src={MainImage} alt="Girl coding" />
         </div>
