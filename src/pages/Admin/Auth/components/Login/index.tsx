@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router";
-import { requestBackendLogin } from '../../../../../core/utils/requests';
+import { saveAuthData, getAuthData, requestBackendLogin } from '../../../../../core/utils/requests';
 import { ButtonLogin } from "../../../../../core/components/ButtonLogin";
 import { AuthCard } from "../AuthCard";
 
@@ -19,6 +19,10 @@ export function Login() {
   const onSubmit = (formData : FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        saveAuthData(response.data);
+
+        const token = getAuthData().access_token;
+        console.log("TOKEN GERADO: " + token)
         setHasError(false);
 
         console.log('SUCESSO!', response);

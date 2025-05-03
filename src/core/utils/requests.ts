@@ -1,6 +1,15 @@
 import axios from 'axios';
 import qs from 'qs';
 
+type LoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  userFirstName: string;
+  userId: number;
+};
+
 export const BASE_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
 const CLIENT_ID = import.meta.env.VITE_REACT_APP_CLIENT_ID 
@@ -26,3 +35,16 @@ export const requestBackendLogin = (loginData: LoginData) => {
 
   return axios({method: 'POST', baseURL: BASE_URL, url: '/oauth2/token', data, headers});
  }
+
+ const tokenKey = 'authData';
+
+ export const saveAuthData = (obj : LoginResponse) => {
+  localStorage.setItem(tokenKey, JSON.stringify(obj))
+}
+
+export const getAuthData = () => {
+  const str = localStorage.getItem(tokenKey) ?? "{}";
+  const obj = JSON.parse(str) as LoginResponse;
+
+  return (obj);
+}
