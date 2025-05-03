@@ -1,18 +1,25 @@
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router";
+import { requestBackendLogin } from '../../../../../core/utils/requests';
 import { ButtonLogin } from "../../../../../core/components/ButtonLogin";
 import { AuthCard } from "../AuthCard";
 
 import styles from './Login.module.css';
 
 type FormData = {
-  username: string
-  password: string
+  username: string;
+  password: string;
 }
 
 export function Login() {
   const { register, handleSubmit } = useForm<FormData>();
   const onSubmit = (formData : FormData) => {
+    requestBackendLogin(formData).then((response) => {
+      console.log('SUCESSO!', response);
+    })
+    .catch((error) => {
+      console.log('ERROR', error)
+    })
     console.log(formData);
   };
   
@@ -27,7 +34,7 @@ export function Login() {
 
           <div className={styles.loginFormEmailContent}>
             <input 
-              {...register("username")}
+              {...register('username')}
               type="email"
               placeholder="Email"
               //name="username"
@@ -36,7 +43,7 @@ export function Login() {
 
           <div className={styles.loginFormPasswordContent}>
             <input 
-              {...register("password")}
+              {...register('password')}
               type="password"
               placeholder="Senha"
               //name="password" 
