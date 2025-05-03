@@ -81,3 +81,11 @@
 
   text-decoration-line: underline;
 }
+
+.alertError {
+  text-align: center;
+  padding: 10px;
+  font-size: 1rem;
+  color: var(--red-300);
+  margin-bottom: 15px;
+}

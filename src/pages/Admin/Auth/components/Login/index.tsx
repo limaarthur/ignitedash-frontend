@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router";
 import { requestBackendLogin } from '../../../../../core/utils/requests';
@@ -13,11 +14,18 @@ type FormData = {
 
 export function Login() {
   const { register, handleSubmit } = useForm<FormData>();
+  const [hasError, setHasError] = useState(false);
+
   const onSubmit = (formData : FormData) => {
-    requestBackendLogin(formData).then((response) => {
-      console.log('SUCESSO!', response);
-    })
+    requestBackendLogin(formData)
+      .then((response) => {
+        setHasError(false);
+
+        console.log('SUCESSO!', response);
+      })
+
     .catch((error) => {
+      setHasError(true);
       console.log('ERROR', error)
     })
     console.log(formData);
@@ -26,6 +34,11 @@ export function Login() {
   return (
     <div className={styles.loginContainer}>
       <AuthCard title="login">
+        {hasError && (
+          <div className={styles.alertError}>
+            Usuário ou senha inválidos!
+          </div>
+        )}
 
         <form 
           onSubmit={handleSubmit(onSubmit)} 
