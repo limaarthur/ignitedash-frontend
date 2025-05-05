@@ -56,3 +56,19 @@
   font-weight: bold;
   }*/
 }
+
+.loginLogoutUsername {
+  margin-right: 1rem;
+}
+
+.loginLogoutLink {
+  color: var(--red-300);
+}
+
+.loginLogoutLinkLogin {
+  color: var(--gray-400);
+
+  &:hover {
+    color: var(--gray-200);
+  }
+}

@@ -15,7 +15,7 @@ type LoginResponse = {
 
 type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
 
-type TokenData = {
+export type TokenData = {
   exp: number;
   username: string;
   authorities: Role[];
@@ -58,6 +58,10 @@ export const getAuthData = () => {
   const obj = JSON.parse(str) as LoginResponse;
 
   return (obj);
+}
+
+export const removeAuthData = () => {
+  localStorage.removeItem(tokenKey);
 }
 
 axios.interceptors.request.use(
