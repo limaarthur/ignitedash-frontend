@@ -2,6 +2,8 @@ import axios from 'axios';
 import qs from 'qs';
 import history from './history';
 
+import { jwtDecode } from 'jwt-decode';
+
 type LoginResponse = {
   access_token: string;
   token_type: string;
@@ -10,6 +12,14 @@ type LoginResponse = {
   userFirstName: string;
   userId: number;
 };
+
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
+
+type TokenData = {
+  exp: number;
+  username: string;
+  authorities: Role[];
+}
 
 export const BASE_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
@@ -68,3 +78,12 @@ function (error) {
   }
   return Promise.reject(error);
 });
+
+export const getTokenData = () : TokenData | undefined => {
+ 
+  try {
+    return jwtDecode(getAuthData().access_token) as TokenData;
+  }catch{
+    return undefined;
+  }
+}

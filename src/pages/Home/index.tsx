@@ -4,6 +4,7 @@ import { ButtonLogin } from "../../core/components/ButtonLogin";
 import MainImage from '../../core/assets/images/main.svg';
 
 import { Footer } from "../../core/components/Footer";
+import { getTokenData } from "../../core/utils/requests";
 
 import styles from "./Home.module.css";
 
@@ -12,6 +13,7 @@ export function Home() {
     <>
       <Header />
       <div className={styles.homeContainer}>
+        <h1>{getTokenData()?.username}</h1>
         <div className={styles.homeContent}>
           <div className={styles.homeContentText}>
             <h1 className={styles.homeTitle}>
