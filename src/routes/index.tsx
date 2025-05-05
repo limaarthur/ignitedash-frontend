@@ -15,7 +15,7 @@ export function AppRoutes() {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/products/:productId" element={<ProductDetails />} />
 
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/*" element={<Admin />} />
         <Route path="/admin/auth/*" element={<Auth />} />
         <Route path="/admin/auth" element={<Navigate to="/admin/auth/login" replace />} />
       </Routes>

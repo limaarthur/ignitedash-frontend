@@ -1,3 +1,5 @@
+import { Route, Routes } from "react-router";
+import { PrivateRoute } from "../../core/components/PrivateRoute";
 import { Header } from "../../core/components/Header";
 import { Navbar } from "./components/Navbar";
 import { Products } from "./Products";
@@ -11,7 +13,24 @@ export function Admin() {
       <div className={styles.adminContainer}>
         <Navbar />
         <div className={styles.adminContent}>
-          <Products />
+          <Routes>
+            <Route element={<PrivateRoute />}>
+              <Route 
+                path="products"
+                element={<Products />}
+              />
+
+              <Route 
+                path="categories"
+                element={<h1>Categories</h1>}
+              />
+
+              <Route 
+                path="users"
+                element={<h1>Users</h1>}
+              />
+            </Route>
+          </Routes>
         </div>
       </div>
     </>

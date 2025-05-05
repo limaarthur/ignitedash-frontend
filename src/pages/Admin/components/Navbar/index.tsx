@@ -7,13 +7,13 @@ export function Navbar() {
     <div className={styles.adminNavbarContainer}>
       <ul>
         <li>
-          <NavLink to="#" className={styles.adminNavbarItem}>Meus produtos</NavLink>
+          <NavLink to="/admin/products" className={styles.adminNavbarItem}>Meus produtos</NavLink>
         </li>
         <li>
-          <NavLink to="#" className={styles.adminNavbarItem}>Minhas categorias</NavLink>
+          <NavLink to="/admin/categories" className={styles.adminNavbarItem}>Minhas categorias</NavLink>
         </li>
         <li>
-          <NavLink to="#" className={styles.adminNavbarItem}>Meus usuários</NavLink>
+          <NavLink to="/admin/users" className={styles.adminNavbarItem}>Meus usuários</NavLink>
         </li>
       </ul>
     </div>
