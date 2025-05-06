@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router';
+import { hasAnyRoles } from '../../../../core/utils/requests';
 
 import styles from './Navbar.module.css';
 
@@ -12,9 +13,11 @@ export function Navbar() {
         <li>
           <NavLink to="/admin/categories" className={styles.adminNavbarItem}>Minhas categorias</NavLink>
         </li>
-        <li>
-          <NavLink to="/admin/users" className={styles.adminNavbarItem}>Meus usuários</NavLink>
-        </li>
+        {hasAnyRoles(['ROLE_ADMIN']) && (
+          <li>
+            <NavLink to="/admin/users" className={styles.adminNavbarItem}>Meus usuários</NavLink>
+          </li>
+        )}
       </ul>
     </div>
   )
