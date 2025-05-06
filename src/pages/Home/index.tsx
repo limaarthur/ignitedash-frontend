@@ -4,7 +4,7 @@ import { ButtonLogin } from "../../core/components/ButtonLogin";
 import MainImage from '../../core/assets/images/main.svg';
 
 import { Footer } from "../../core/components/Footer";
-import { isAuthenticated } from "../../core/utils/requests";
+import { hasAnyRoles  } from "../../core/utils/requests";
 
 import styles from "./Home.module.css";
 
@@ -13,7 +13,7 @@ export function Home() {
     <>
       <Header />
       <div className={styles.homeContainer}>
-        <h1>{isAuthenticated() ? 'autenticado' : 'Não autenticado'}</h1>
+        <h1>Resultado = {hasAnyRoles(["ROLE_ADMIN"]) ? 'Sim' : 'Não'}</h1>
         <div className={styles.homeContent}>
           <div className={styles.homeContentText}>
             <h1 className={styles.homeTitle}>
