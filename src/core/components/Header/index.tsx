@@ -1,30 +1,31 @@
-import { useEffect, useState } from 'react';
-import { getTokenData, isAuthenticated, removeAuthData, TokenData } from '../../utils/requests';
+import { useContext, useEffect } from 'react';
+import { getTokenData, isAuthenticated, removeAuthData } from '../../utils/requests';
+import { AuthContext } from '../../../AuthContext';
 import { Link, useNavigate  } from "react-router";
+
 import styles from "./Navbar.module.css";
 
-type AuthData = {
-  authenticated: boolean;
-  tokenData?: TokenData;
-};
-
 export function Header() {
-  const [authData, setAuthData] = useState<AuthData>({ authenticated: false });
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated()) {
-      setAuthData({
+      setAuthContextData({
         authenticated: true,
         tokenData: getTokenData(),
       });
+    } else {
+      setAuthContextData({
+        authenticated: false,
+      });
     }
-  }, []);
+  }, [setAuthContextData]);
 
   const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     removeAuthData();
-    setAuthData({
+    setAuthContextData({
       authenticated: false,
     });
     navigate('/');
@@ -48,12 +49,12 @@ export function Header() {
           </ul>
         </div>
         <div className={styles.loginLogoutContainer}>
-          {authData.authenticated ? (
+          {authContextData.authenticated ? (
             <>
               <span 
                 className={styles.loginLogoutUsername}
               >
-                {authData.tokenData?.username}
+                {authContextData.tokenData?.username}
               </span>
               <a 
                 className={styles.loginLogoutLink}

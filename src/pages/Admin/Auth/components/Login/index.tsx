@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from "react-router";
-import { saveAuthData, getAuthData, requestBackendLogin } from '../../../../../core/utils/requests';
+import { saveAuthData, requestBackendLogin, getTokenData } from '../../../../../core/utils/requests';
+import { AuthContext } from '../../../../../AuthContext';
 import { ButtonLogin } from "../../../../../core/components/ButtonLogin";
 import { AuthCard } from "../AuthCard";
 
@@ -15,6 +16,7 @@ type FormData = {
 export function Login() {
   const { register, handleSubmit } = useForm<FormData>();
   const [hasError, setHasError] = useState(false);
+  const { setAuthContextData } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -22,12 +24,13 @@ export function Login() {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
-
-        const token = getAuthData().access_token;
-        console.log("TOKEN GERADO: " + token)
         setHasError(false);
 
-        console.log('SUCESSO!', response);
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        })
+
         navigate('/admin');
       })
 
