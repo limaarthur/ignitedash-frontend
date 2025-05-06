@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { saveAuthData, requestBackendLogin, getTokenData } from '../../../../../core/utils/requests';
 import { AuthContext } from '../../../../../AuthContext';
 import { ButtonLogin } from "../../../../../core/components/ButtonLogin";
@@ -13,7 +13,13 @@ type FormData = {
   password: string;
 }
 
+type LocationState = {
+  from: string;
+}
+
 export function Login() {
+  const location = useLocation();
+  const from = (location.state as LocationState)?.from || '/admin';
   const { register, handleSubmit } = useForm<FormData>();
   const [hasError, setHasError] = useState(false);
   const { setAuthContextData } = useContext(AuthContext);
@@ -23,15 +29,15 @@ export function Login() {
   const onSubmit = (formData : FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
-        saveAuthData(response.data);
-        setHasError(false);
+        saveAuthData(response.data); //salva os dados no locaStorage
+        setHasError(false); // fala que não teve erro no login
 
-        setAuthContextData({
-          authenticated: true,
-          tokenData: getTokenData(),
+        setAuthContextData({ // Atualiza para Logout/Login na tela do usuario
+          authenticated: true, //retorna verdadeiro
+          tokenData: getTokenData(), //pega o token do usuario
         })
 
-        navigate('/admin');
+        navigate(from); //redireciona para tela de admin
       })
 
     .catch((error) => {
