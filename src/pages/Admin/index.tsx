@@ -26,9 +26,12 @@ export function Admin() {
               />
 
               <Route 
-                path="users"
-                element={<h1>Users</h1>}
-              />
+                element={<PrivateRoute roles={['ROLE_ADMIN']} />}>
+                  <Route
+                    path="users"
+                    element={<Products />} 
+                  />
+              </Route>
             </Route>
           </Routes>
         </div>

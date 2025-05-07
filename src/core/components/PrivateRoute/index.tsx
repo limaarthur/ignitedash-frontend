@@ -1,15 +1,25 @@
 import { Navigate, Outlet } from "react-router"
 
-import { isAuthenticated } from "../../utils/requests";
+import { hasAnyRoles, isAuthenticated, Role } from "../../utils/requests";
 
-export const PrivateRoute = () => {
-  return isAuthenticated() ? ( //testa se o usuario não esta autenticado
-    <Outlet /> // renderiza o componente da rota filha (caso o usuário esteja autenticado)
-  ) : ( 
-    <Navigate // redireciona para a tela de login
-      to="/admin/auth/login" 
-      replace 
-      state={{ from: location}}  
-    />
-  )
+type PrivateRouteProps = {
+  roles?: Role[];
+};
+
+export const PrivateRoute = ({ roles = [] }: PrivateRouteProps) => {
+  if (!isAuthenticated()) { // Se o usuário não estiver autenticado, redireciona para a página de login
+    return (
+      <Navigate
+        to="/admin/auth/login"
+        replace
+        state={{ from: location }}
+      />
+    );
+  }
+
+  if (!hasAnyRoles(roles)) { // Se o usuário não tiver os papéis necessários, redireciona para /admin/products
+    return <Navigate to="/admin/products" replace />;
+  }
+  // Caso o usuário esteja autenticado e tenha os papéis necessários, renderiza o Outlet (componente da rota filha)
+  return <Outlet />;
 }
