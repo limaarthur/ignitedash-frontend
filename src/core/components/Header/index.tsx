@@ -1,7 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { getTokenData, isAuthenticated, removeAuthData } from '../../utils/requests';
 import { AuthContext } from '../../../AuthContext';
 import { Link, useNavigate  } from "react-router";
+import { getTokenData, isAuthenticated } from '../../utils/auth';
+import { removeAuthData } from '../../utils/storage';
 
 import styles from "./Navbar.module.css";
 

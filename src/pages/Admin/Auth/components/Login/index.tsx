@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from "react-router";
-import { saveAuthData, requestBackendLogin, getTokenData } from '../../../../../core/utils/requests';
+import { requestBackendLogin } from '../../../../../core/utils/requests';
+import { saveAuthData } from '../../../../../core/utils/storage';
+import { getTokenData } from '../../../../../core/utils/auth';
 import { AuthContext } from '../../../../../AuthContext';
 import { ButtonLogin } from "../../../../../core/components/ButtonLogin";
 import { AuthCard } from "../AuthCard";

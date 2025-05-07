@@ -4,7 +4,7 @@ import { ButtonLogin } from "../../core/components/ButtonLogin";
 import MainImage from '../../core/assets/images/main.svg';
 
 import { Footer } from "../../core/components/Footer";
-import { hasAnyRoles  } from "../../core/utils/requests";
+import { hasAnyRoles } from "../../core/utils/auth";
 
 import styles from "./Home.module.css";
 

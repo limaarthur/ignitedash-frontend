@@ -1,6 +1,5 @@
 import { Navigate, Outlet } from "react-router"
-
-import { hasAnyRoles, isAuthenticated, Role } from "../../utils/requests";
+import { hasAnyRoles, isAuthenticated, Role } from "../../utils/auth";
 
 type PrivateRouteProps = {
   roles?: Role[];
