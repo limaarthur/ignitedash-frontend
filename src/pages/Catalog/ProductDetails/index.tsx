@@ -34,7 +34,7 @@ export function ProductDetails() {
       <Header />
       <div className={styles.productDetailsContainer}>
         <div className={styles.cardDetailsProduct}>
-          <Link to={'/products'} className={styles.productDetailsGoback}>
+          <Link to='/products' className={styles.productDetailsGoback}>
             <ArrowIcon className={styles.iconGoback} />
             <h1 className={styles.textGoback}>voltar</h1>
           </Link>
@@ -56,7 +56,7 @@ export function ProductDetails() {
                     <h1 className={styles.productDetailsName}>
                       {product?.name}
                     </h1>
-                    {product && <ProductPrice price={product?.price} />}
+                    {product && <ProductPrice price={product.price} />}
                   </div>
                 </>
               )}

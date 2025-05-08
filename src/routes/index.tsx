@@ -12,7 +12,7 @@ export function AppRoutes() {
     <CustomRouter history={history}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/products" element={<Catalog />} />
         <Route path="/products/:productId" element={<ProductDetails />} />
 
         <Route path="/admin/*" element={<Admin />} />

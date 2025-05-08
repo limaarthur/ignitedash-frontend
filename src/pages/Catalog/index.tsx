@@ -51,7 +51,7 @@ export function Catalog() {
             page?.content.map(product => {
               return (
                 <div key={product.id}>
-                  <Link to={'/products/1'}>
+                  <Link to={`/products/${product.id}`}>
                     <ProductCard product={product} />
                   </Link>
                 </div>

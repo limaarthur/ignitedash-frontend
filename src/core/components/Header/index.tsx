@@ -42,7 +42,7 @@ export function Header() {
               <Link to="/" className={styles.isActive}>HOME</Link>
             </li>
             <li>
-              <Link to="/catalog" className={styles.isActive}>CATÁLOGO</Link>
+              <Link to="/products" className={styles.isActive}>CATÁLOGO</Link>
             </li>
             <li>
               <Link to="/admin" className={styles.isActive}>ADMIN</Link>

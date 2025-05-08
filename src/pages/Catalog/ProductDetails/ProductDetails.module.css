@@ -63,6 +63,8 @@
 .productDetailsImage {
   width: 22rem;
   height: 22rem;
+
+  object-fit: cover;
 }
 
 .productDetailsName {
