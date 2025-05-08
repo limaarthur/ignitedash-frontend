@@ -11,7 +11,7 @@ export const PrivateRoute = ({ roles = [] }: PrivateRouteProps) => {
       <Navigate
         to="/admin/auth/login"
         replace
-        state={{ from: location }}
+        state={{ from: location.pathname + location.search }}
       />
     );
   }
