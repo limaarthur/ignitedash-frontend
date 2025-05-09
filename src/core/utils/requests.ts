@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
+import { getAuthData } from './storage';
 
 export const BASE_URL = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
@@ -25,8 +26,29 @@ export const requestBackendLogin = (loginData: LoginData) => {
     grant_type: 'password',
   });
 
-  return axios({method: 'POST', baseURL: BASE_URL, url: '/oauth2/token', data, headers});
+  return axios({
+    method: 'POST', 
+    baseURL: BASE_URL, 
+    url: '/oauth2/token', 
+    data, 
+    headers
+  });
  }
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: 'Bearer ' + getAuthData().access_token, //acrescenta o token no corpo
+      }
+    : config.headers; //se der erro
+
+  return axios({
+    ...config, 
+    baseURL: BASE_URL, 
+    headers 
+  });
+}
 
   axios.interceptors.request.use(
     function (config) {
