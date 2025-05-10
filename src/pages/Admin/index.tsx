@@ -16,7 +16,7 @@ export function Admin() {
           <Routes>
             <Route element={<PrivateRoute />}>
               <Route 
-                path="products"
+                path="products/*"
                 element={<Products />}
               />
 
