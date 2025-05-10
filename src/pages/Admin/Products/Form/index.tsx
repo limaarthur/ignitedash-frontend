@@ -1,11 +1,12 @@
-import { useParams } from "react-router";
+import { BaseForm } from "../../components/BaseForm";
 
 export function Form() {
-  const { productId } = useParams();
-
   return (
-    <div>
-      <h1>Hello form: {productId}</h1>
-    </div>
+    <form>
+      <BaseForm
+        title="DADOS DO PRODUTO"
+      >
+      </BaseForm>
+    </form>
   )
 }
