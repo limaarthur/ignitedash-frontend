@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 import styles from './BaseForm.module.css';
 
 type BaseFormProps = {
@@ -6,6 +8,12 @@ type BaseFormProps = {
 }
 
 export function BaseForm({ title, children}: BaseFormProps) {
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate('../'); //volta para a listagem
+  };
+
   return (
     <div className={styles.adminBaseForm}>
       <h1 
@@ -17,6 +25,7 @@ export function BaseForm({ title, children}: BaseFormProps) {
       <div className={styles.baseFormActions}>
         <button 
           className={styles.buttonCancel}
+          onClick={handleCancel}
         >
           CANCELAR
         </button>

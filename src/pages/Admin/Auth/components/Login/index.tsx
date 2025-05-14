@@ -10,7 +10,7 @@ import { AuthCard } from "../AuthCard";
 
 import styles from './Login.module.css';
 
-type FormData = {
+type CredentialsDTO = {
   username: string;
   password: string;
 }
@@ -22,14 +22,14 @@ type LocationState = {
 export function Login() {
   const location = useLocation();
   const from = (location.state as LocationState)?.from || '/admin';
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<CredentialsDTO>();
   const [hasError, setHasError] = useState(false);
   const { setAuthContextData } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  const onSubmit = (formData : FormData) => {
-    requestBackendLogin(formData)
+  const onSubmit = (credentialsDTO : CredentialsDTO) => {
+    requestBackendLogin(credentialsDTO)
       .then((response) => {
         saveAuthData(response.data); //salva os dados no locaStorage
         setHasError(false); // fala que não teve erro no login
@@ -46,7 +46,7 @@ export function Login() {
       setHasError(true);
       console.log('ERROR', error)
     })
-    console.log(formData);
+    console.log(credentialsDTO);
   };
   
   return (

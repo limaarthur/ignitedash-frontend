@@ -1,43 +1,26 @@
 .productFormContainer {
   display: flex;
   justify-content: space-between;
-
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .inputsContainer {
   display: flex;
   flex-direction: column;
-
-  gap: 2rem;
 }
 
-.productFormContainer {
-  border: 1px solid red;
-}
-
-.input01 {
+.input {
   width: 28rem;
   height: 3rem;
 
-  border: 1px solid var(--gray-300);;
-  border-radius: 10px;
+  padding: 1rem;
 
-  outline: none;
-}
-
-.input02 {
-  width: 28rem;
-  height: 3rem;
-
-  border: 1px solid var(--gray-300);;
-  border-radius: 10px;
-
-  outline: none;
-}
-
-.input03 {
-  width: 28rem;
-  height: 3rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-300);
+  margin-bottom: 1.5rem;
 
   border: 1px solid var(--gray-300);;
   border-radius: 10px;
@@ -46,9 +29,16 @@
 }
 
 .productDescriptionCard {  
-  height: 12rem;
-  max-width: 25rem;
+  height: 24rem;
+  width: 55rem;
+  max-width: 55rem;
   padding: 1rem;
+
+  font-size: 1rem;
+  line-height: 2rem;
+  letter-spacing: -0.015em;
+  color: var(--gray-300);
+  margin-bottom: 1.5rem;
 
   border-radius: 10px;
   border: 1px solid var(--white-300);
