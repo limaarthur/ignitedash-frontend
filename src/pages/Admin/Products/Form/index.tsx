@@ -1,25 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { AxiosRequestConfig } from "axios";
+import { requestBackend } from "../../../../core/utils/requests";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import type { Product } from "../../../../core/types/products";
+import type { Category } from "../../../../core/types/category";
 import { BaseForm } from "../../components/BaseForm";
-import { requestBackend } from "../../../../core/utils/requests";
+import Select from "react-select";
 
 import styles from './Form.module.css';
-import Select from "react-select";
 
 type UrlParams = { // tipo criado, pode ser mais de um em uma rota url
   productId: string;
 };
 
 export function Form() {
-  const options = [
-    {value: 'chocolate', label: 'Chocolate'},
-    {value: 'strawberry', label: 'Strawberry'},
-    {value: 'vanilla', label: 'Vanilla'}
-  ]
-  
+  const [selectCategories, setSelectCategories] = useState<Category[]>([])
   const navigate = useNavigate();
   const { productId } = useParams<UrlParams>(); //pega o parametro da url
   const isEditing = productId !== 'create'; //se parametro da url for diferente do create
@@ -28,7 +24,14 @@ export function Form() {
     handleSubmit,
     formState: { errors },
     setValue, //permite definir o valor de algum atributo
-  } = useForm<Product>();
+  } = useForm<Product>(); 
+
+  useEffect(() => {
+    requestBackend({url: '/categories'})
+    .then(response => {
+      setSelectCategories(response.data.content);
+    })
+  }, []);
   
   useEffect(() => {
     // função pra carrega os dados do produto no formulário de editar
@@ -103,8 +106,10 @@ export function Form() {
             <div>
               <Select 
                 placeholder="Categorias"
-                options={options}
+                options={selectCategories}
                 isMulti
+                getOptionLabel={(category: Category) => category.name} // Recebe o item da lista e coloca o nome da categoria
+                getOptionValue={(category: Category) => String(category.id)} // Recebe o item da lista e coloca o valor da categoria
               />
             </div>
           </div>
