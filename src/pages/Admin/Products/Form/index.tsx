@@ -7,12 +7,19 @@ import { BaseForm } from "../../components/BaseForm";
 import { requestBackend } from "../../../../core/utils/requests";
 
 import styles from './Form.module.css';
+import Select from "react-select";
 
 type UrlParams = { // tipo criado, pode ser mais de um em uma rota url
   productId: string;
 };
 
 export function Form() {
+  const options = [
+    {value: 'chocolate', label: 'Chocolate'},
+    {value: 'strawberry', label: 'Strawberry'},
+    {value: 'vanilla', label: 'Vanilla'}
+  ]
+  
   const navigate = useNavigate();
   const { productId } = useParams<UrlParams>(); //pega o parametro da url
   const isEditing = productId !== 'create'; //se parametro da url for diferente do create
@@ -78,15 +85,7 @@ export function Form() {
               />
               {errors.name?.message}
             </div>
-
-            <div>
-              <input 
-                type="text"
-                placeholder="Categorias"
-                className={styles.input}
-              />
-            </div>
-
+            
             <div>
               <input 
                 {...register('price', {
@@ -94,11 +93,19 @@ export function Form() {
                 })}
                 type="number"
                 placeholder="Preço do produto"
-                className={`${styles.input} ${errors.name ? 'is-invalid' : ''}`}
+                className={`${styles.input} ${errors.price ? 'is-invalid' : ''}`}
               />
               <div className={styles.invalidFeedback}>
                 {errors.price?.message}
               </div>
+            </div>
+
+            <div>
+              <Select 
+                placeholder="Categorias"
+                options={options}
+                isMulti
+              />
             </div>
           </div>
 
