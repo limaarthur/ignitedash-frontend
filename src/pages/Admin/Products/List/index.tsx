@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import type { AxiosRequestConfig } from "axios";
+import { requestBackend } from "../../../../core/utils/requests";
+import type { SpringPage } from "../../../../core/types/spring";
+import type { Product } from "../../../../core/types/products";
 import { ProductFilters } from "../../../../core/components/ProductFilters";
 import { ProductCrudCard } from "../ProductCrudCard";
 import { Pagination } from "../../../../core/components/Pagination";
-import type { SpringPage } from "../../../../core/types/spring";
-import type { Product } from "../../../../core/types/products";
-import type { AxiosRequestConfig } from "axios";
 
 import styles from './List.module.css';
-import { requestBackend } from "../../../../core/utils/requests";
 
 export function List() {
   const [page, setPage] = useState<SpringPage<Product>>();
 
   useEffect(() => {
+    getProducts();
+  }, []);
+
+  const getProducts = () => {
     const config: AxiosRequestConfig = {
       method: 'GET',
       url: '/products',
@@ -23,12 +27,11 @@ export function List() {
       }
     };
 
-    requestBackend(config)
-      .then((response) => {
-        setPage(response.data);
-        console.log(response.data);
-      })
-  }, []);
+    requestBackend(config).then((response) => {
+      setPage(response.data)
+      });
+    };
+
 
   return (
     <div className={styles.productCrudContainer}>
@@ -48,7 +51,10 @@ export function List() {
             className={styles.productCrudCardContainerContentInList}
             key={product.id}  
           >
-            <ProductCrudCard product={product} />
+            <ProductCrudCard 
+              product={product}
+              onDelete={getProducts} //evento que chama a lista atualizada
+            />
           </div>
         ))}
 
