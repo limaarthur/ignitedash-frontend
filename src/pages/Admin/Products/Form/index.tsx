@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../../../../core/utils/requests";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import type { Product } from "../../../../core/types/products";
 import type { Category } from "../../../../core/types/category";
@@ -24,6 +24,7 @@ export function Form() {
     handleSubmit,
     formState: { errors },
     setValue, //permite definir o valor de algum atributo
+    control,
   } = useForm<Product>(); 
 
   useEffect(() => {
@@ -80,19 +81,21 @@ export function Form() {
             <div>
               <input 
                 {...register('name', {
-                  required: 'Campo obrigatório',
+                  required: '* Campo obrigatório!',
                 })}
                 type="text"
                 placeholder="Nome do produto"
                 className={`${styles.input} ${errors.name ? 'is-invalid' : ''}`}
               />
-              {errors.name?.message}
+              <div className={styles.invalidFeedback}>
+                {errors.name?.message}
+              </div>
             </div>
             
             <div>
               <input 
                 {...register('price', {
-                  required: 'Campo Obrigatório',
+                  required: '* Campo Obrigatório!',
                 })}
                 type="number"
                 placeholder="Preço do produto"
@@ -104,13 +107,29 @@ export function Form() {
             </div>
 
             <div>
-              <Select 
-                placeholder="Categorias"
-                options={selectCategories}
-                isMulti
-                getOptionLabel={(category: Category) => category.name} // Recebe o item da lista e coloca o nome da categoria
-                getOptionValue={(category: Category) => String(category.id)} // Recebe o item da lista e coloca o valor da categoria
+              <Controller
+                name="categories" // Nome do campo, tem q ser igual o nome do estado e do tipo Product
+                rules={{ required: true }} // Regra de validação
+                control={control}
+                render={({ field }) => ( 
+                  // Integra o select do formulário com o campo gerenciado pelo react-hook-form
+                  <Select 
+                    {...field}
+                    placeholder="Categorias"
+                    options={selectCategories}
+                    isMulti
+                    getOptionLabel={(category: Category) => category.name} // Recebe o item da lista e coloca o nome da categoria
+                    getOptionValue={(category: Category) => String(category.id)} // Recebe o item da lista e coloca o valor da categoria
+                  />
+                )}
               />
+
+              {/* Exibe a mensagem de erro se nenhuma categoria for selecionada */}
+              {errors.categories && (
+                <div className={styles.invalidFeedback}>
+                  * Campo Obrigatório!
+                </div>
+                )}
             </div>
           </div>
 
