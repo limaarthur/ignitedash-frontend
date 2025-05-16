@@ -5,8 +5,8 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import type { Product } from "../../../../core/types/products";
 import type { Category } from "../../../../core/types/category";
-import { BaseForm } from "../../components/BaseForm";
 import Select from "react-select";
+import { BaseForm } from "../../components/BaseForm";
 
 import styles from './Form.module.css';
 
@@ -51,18 +51,11 @@ export function Form() {
   }, [isEditing, productId, setValue]); //caso mudar o valor de algum, a função atualiza os dados
 
   const onSubmit = (formData: Product) => {
-    const data = {
-      ...formData,
-      imgUrl: isEditing
-      ? formData.imgUrl
-      : 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg',
-      categories: isEditing ? formData.categories : [{ id: 1, name: 'teste' }],
-    };
 
     const config: AxiosRequestConfig = {
       method: isEditing ? 'PUT' : 'POST',
       url: isEditing ? `/products/${productId}` : '/products',
-      data,
+      data: formData,
       withCredentials: true,
     };
 
@@ -105,6 +98,28 @@ export function Form() {
                 {errors.price?.message}
               </div>
             </div>
+
+            <div className="margin-bottom-30">
+                <input
+                  {...register('imgUrl', {
+                    required: '* Campo obrigatório!',
+                    pattern: {
+                      value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                      message: 'Deve ser uma url válida',
+                    },
+                  })}
+                  type="text"
+                  className={`${styles.input} ${
+                    errors.imgUrl ? 'is-invalid' : ''
+                  }`} // Mostra o campo vermelho
+                  placeholder="Url da imagem do produto"
+                  name="imgUrl"
+                  data-testid="imgUrl"
+                />
+                <div className={styles.invalidFeedback}>
+                  {errors.imgUrl?.message}
+                </div>
+              </div>
 
             <div>
               <Controller
@@ -149,7 +164,6 @@ export function Form() {
               </div>
             </div>
           </div>
-
         </div>
       </BaseForm>
     </form>
