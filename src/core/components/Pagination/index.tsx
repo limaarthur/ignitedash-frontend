@@ -1,21 +1,33 @@
-import ArrowIcon from '../../../core/assets/images/arrow-icon.svg?react';
+import ReactPaginate from 'react-paginate';
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 import styles from './Pagination.module.css';
 
 export function Pagination() {
   return (
-    <div className={styles.paginationContainer}>
-      <ArrowIcon
-        className={styles.paginationPrevious}
-      />
-      <div className={styles.paginationItem}>1</div>
-      <div className={styles.paginationItem}>2</div>
-      <div className={styles.paginationItem}>3</div>
-      <div className={styles.paginationItem}>...</div>
-      <div className={styles.paginationItem}>10</div>
-      <ArrowIcon 
-        className={styles.paginationNext}
-      />
-    </div>
-  )
+    <ReactPaginate
+      pageCount={10}
+      pageRangeDisplayed={3}
+      marginPagesDisplayed={1}
+      containerClassName={styles.paginationContainer}
+      pageLinkClassName={styles.paginationItem}
+      breakClassName={styles.paginationItem}
+      previousClassName={styles.paginationPrevious}
+      nextClassName={styles.paginationNext}
+      previousLabel={
+        <CaretLeft 
+          size={22} 
+          className={styles.arrowPrevious} 
+        />
+      }
+      nextLabel={
+        <CaretRight 
+          size={22} 
+          className={styles.arrowNext} 
+        />
+      }
+      activeLinkClassName={styles.paginationLinkActive}
+      disabledClassName={styles.arrowInactive}
+    />
+  );
 }
