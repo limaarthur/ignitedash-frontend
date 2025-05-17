@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import type { Product } from "../../../../core/types/products";
 import type { Category } from "../../../../core/types/category";
 import Select from "react-select";
+import CurrencyInput from "react-currency-input-field";
 import { BaseForm } from "../../components/BaseForm";
 
 import styles from './Form.module.css';
@@ -84,42 +85,46 @@ export function Form() {
                 {errors.name?.message}
               </div>
             </div>
-            
+
             <div>
-              <input 
-                {...register('price', {
-                  required: '* Campo Obrigatório!',
-                })}
-                type="number"
-                placeholder="Preço do produto"
-                className={`${styles.input} ${errors.price ? 'is-invalid' : ''}`}
+              <Controller
+                name="price"
+                rules={{ required: 'Campo Obrigatório' }}
+                control={control}
+                render={({ field }) => (
+                  <CurrencyInput
+                    placeholder="Preço"
+                    className={`${styles.input} ${errors.name ? 'is-invalid' : ''}`}
+                    disableGroupSeparators={true}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  />
+                )}
               />
               <div className={styles.invalidFeedback}>
                 {errors.price?.message}
               </div>
             </div>
 
-            <div className="margin-bottom-30">
-                <input
-                  {...register('imgUrl', {
-                    required: '* Campo obrigatório!',
-                    pattern: {
-                      value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
-                      message: 'Deve ser uma url válida',
-                    },
-                  })}
-                  type="text"
-                  className={`${styles.input} ${
-                    errors.imgUrl ? 'is-invalid' : ''
-                  }`} // Mostra o campo vermelho
-                  placeholder="Url da imagem do produto"
-                  name="imgUrl"
-                  data-testid="imgUrl"
-                />
-                <div className={styles.invalidFeedback}>
-                  {errors.imgUrl?.message}
-                </div>
+            <div>
+              <input
+                {...register('imgUrl', {
+                  required: '* Campo obrigatório!',
+                  pattern: {
+                    value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                    message: 'Deve ser uma url válida',
+                  },
+                })}
+                type="text"
+                className={`${styles.input} ${errors.imgUrl ? 'is-invalid' : ''}`} // Mostra o campo vermelho
+                placeholder="Url da imagem do produto"
+                name="imgUrl"
+                data-testid="imgUrl"
+              />
+              <div className={styles.invalidFeedback}>
+                {errors.imgUrl?.message}
               </div>
+            </div>
 
             <div>
               <Controller
