@@ -1,38 +1,43 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { AxiosRequestConfig } from 'axios';
+import { BASE_URL, requestBackend } from '../../core/utils/requests';
+import type { SpringPage } from '../../core/types/spring';
+import { Link } from 'react-router';
+import { CardLoader } from './CardLoader';
 import { ProductFilters } from '../../core/components/ProductFilters';
 import { ProductCard } from './components/ProductCard';
 import { Header } from '../../core/components/Header'
 import { Pagination } from '../../core/components/Pagination';
-import { BASE_URL } from '../../core/utils/requests';
 import type { Product } from '../../core/types/products';
+
 import styles from './Catalog.module.css';
-import type { SpringPage } from '../../core/types/spring';
-import type { AxiosParams } from '../../core/types/vendor/axios';
-import { Link } from 'react-router';
-import { CardLoader } from './CardLoader';
 
 export function Catalog() {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const params: AxiosParams = {
+  const getProducts = (pageNumber: number) => {
+    const params: AxiosRequestConfig = {
       method: 'GET',
       url: `${BASE_URL}/products`,
       params: {
-        page: 0,
+        page: pageNumber,
         size: 12,
       },
     };
 
     setIsLoading(true);
-    axios(params).then((response) => {
+    requestBackend(params)
+    .then((response) => {
       setPage(response.data);
+      console.log(page);
     })
     .finally(() => {
       setIsLoading(false);
     });
+  }
+    useEffect(() => {
+      getProducts(0);
   }, []);
 
   return (
@@ -59,7 +64,11 @@ export function Catalog() {
           }))}
         </div>
       
-        <Pagination />
+        <Pagination 
+          pageCount={page ? page.totalPages : 0} 
+          range={3} 
+          onChange={getProducts}
+        />
       </div>
     </>
   )

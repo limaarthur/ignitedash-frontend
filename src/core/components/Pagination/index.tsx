@@ -3,11 +3,17 @@ import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 import styles from './Pagination.module.css';
 
-export function Pagination() {
+type PaginationProps = {
+  pageCount: number;
+  range: number;
+  onChange?: (pageNumber: number) => void;
+};
+
+export function Pagination({ pageCount, range, onChange }: PaginationProps) {
   return (
     <ReactPaginate
-      pageCount={10}
-      pageRangeDisplayed={3}
+      pageCount={pageCount}
+      pageRangeDisplayed={range}
       marginPagesDisplayed={1}
       containerClassName={styles.paginationContainer}
       pageLinkClassName={styles.paginationItem}
@@ -28,6 +34,7 @@ export function Pagination() {
       }
       activeLinkClassName={styles.paginationLinkActive}
       disabledClassName={styles.arrowInactive}
+      onPageChange={(items) => (onChange ? onChange(items.selected) : {})}
     />
   );
 }
