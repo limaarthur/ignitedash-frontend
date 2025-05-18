@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router";
 import type { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../../../../core/utils/requests";
@@ -10,28 +10,40 @@ import { Pagination } from "../../../../core/components/Pagination";
 
 import styles from './List.module.css';
 
+type ControlComponentsData = {  // dados dos componentes de controle
+  activePage: number; // número da página ativa, vindo do componente de paginação
+}
+
 export function List() {
   const [page, setPage] = useState<SpringPage<Product>>();
+  const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>(
+    { //Mantém o estado dos dados de todos os componentes que fazem algum controle da listagem
+      activePage: 0
+    }
+  );
+  const handlePageChange = (pageNumber: number) => { //Atualiza o estado que o componente devolve
+    setControlComponentsData({activePage: pageNumber});
+  }
 
-  useEffect(() => {
-    getProducts(0);
-  }, []);
-
-  const getProducts = (pageNumber: number) => {
+  const getProducts = useCallback(() => { //Função para pegar todos os produtos no backend
     const config: AxiosRequestConfig = {
       method: 'GET',
       url: '/products',
       params: {
-        page: pageNumber,
+        page: controlComponentsData.activePage,
         size: 3,
       }
     };
 
     requestBackend(config).then((response) => {
+      // Passa o config como parametro no requestBackend
       setPage(response.data)
-      });
-    };
+    });
+  }, [controlComponentsData]);
 
+  useEffect(() => {
+    getProducts(); // Chama a função
+  }, [getProducts]);
 
   return (
     <div className={styles.productCrudContainer}>
@@ -53,7 +65,7 @@ export function List() {
           >
             <ProductCrudCard 
               product={product}
-              onDelete={() => getProducts(page.number)} //evento que chama a lista atualizada
+              onDelete={getProducts} //evento que chama a lista atualizada
             />
           </div>
         ))}
@@ -62,7 +74,7 @@ export function List() {
       <Pagination
         pageCount={page ? page.totalPages : 0}
         range={3}
-        onChange={getProducts}
+        onChange={handlePageChange}
       />
     </div>
   )
