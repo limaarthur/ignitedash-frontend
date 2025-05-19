@@ -17,12 +17,18 @@ export function ProductFilters() {
   const {
     register,
     handleSubmit,
+    setValue,
     control, // Objeto de controle do hook form
  } = useForm<ProductFilterData>();
 
 const onSubmit = (formData: ProductFilterData) => {
   console.log('Enviou', formData);
 };
+
+const handleFormClear = () => { // função pra limpar os campos de busca
+  setValue('name', '');
+  setValue('category', null);
+}
 
 useEffect(() => {
   requestBackend({ url: '/categories' }).then((response) => {  // Função pra carrega do backend quando o componente for montado
@@ -66,7 +72,10 @@ useEffect(() => {
           )}
         />
 
-        <button className={styles.clearFilterButton}>
+        <button 
+          onClick={handleFormClear}
+          className={styles.clearFilterButton}
+        >
           LIMPAR FILTRO
         </button>
       </form>
