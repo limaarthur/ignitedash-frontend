@@ -4,14 +4,16 @@ import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import styles from './Pagination.module.css';
 
 type PaginationProps = {
+  forcePage?: number;
   pageCount: number;
   range: number;
   onChange?: (pageNumber: number) => void;
 };
 
-export function Pagination({ pageCount, range, onChange }: PaginationProps) {
+export function Pagination({ forcePage, pageCount, range, onChange }: PaginationProps) {
   return (
     <ReactPaginate
+      forcePage={forcePage}
       pageCount={pageCount}
       pageRangeDisplayed={range}
       marginPagesDisplayed={1}

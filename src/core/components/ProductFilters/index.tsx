@@ -12,7 +12,11 @@ export type ProductFilterData = {
   category: Category | null;
 };
 
-export function ProductFilters() {
+type ProductFiltersProps = {
+  onSubmitFilter : (data: ProductFilterData) => void
+}
+
+export function ProductFilters({ onSubmitFilter } : ProductFiltersProps) {
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
   const {
     register,
@@ -22,7 +26,7 @@ export function ProductFilters() {
  } = useForm<ProductFilterData>();
 
 const onSubmit = (formData: ProductFilterData) => {
-  console.log('Enviou', formData);
+  onSubmitFilter(formData);
 };
 
 const handleFormClear = () => { // função pra limpar os campos de busca
@@ -46,12 +50,12 @@ useEffect(() => {
           <input 
             {...register('name')}
             type="text"
-            className="form-control"
             placeholder="Pesquisar Produto"
-            name="name"
           />
-          <button className={styles.buttonSearch}>
-            <SearchIcon />
+          <button 
+            type="submit" 
+            className={styles.buttonSearch}>
+              <SearchIcon />
           </button>
         </div>
 
